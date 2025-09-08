@@ -1,5 +1,6 @@
+import 'package:authentication_kit/features/authentication/screens/forgot_password/forgot_password_screen.dart';
 import 'package:authentication_kit/features/authentication/screens/phone_signin/phone_signin.dart';
-import 'package:authentication_kit/features/authentication/screens/signin_screen/signin_screen.dart';
+import 'package:authentication_kit/features/authentication/screens/signup_screen/signup_screen.dart';
 import 'package:authentication_kit/features/authentication/screens/signup_screen/widgets/custom_iconbutton_with_border.dart';
 import 'package:authentication_kit/utils/constants/colors.dart';
 import 'package:authentication_kit/utils/constants/image_strings.dart';
@@ -8,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+class SigninScreen extends StatelessWidget {
+  const SigninScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +34,9 @@ class SignupScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Title
-              Text(
-                "Create account",
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
+              Text("Login", style: Theme.of(context).textTheme.headlineMedium),
 
-              SizedBox(height: CustomSizes.spaceBtwSections),
+              SizedBox(height: CustomSizes.spaceBtwItems),
 
               // Form
               Form(
@@ -46,26 +44,13 @@ class SignupScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Username",
+                      "Email address",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: CustomSizes.spaceBtwItems / 2),
                     TextField(
                       decoration: InputDecoration(
-                        hintText: "You Username",
-                        hintStyle: TextStyle(color: CustomColors.textSecondary),
-                      ),
-                    ),
-                    SizedBox(height: CustomSizes.spaceBtwItems),
-
-                    Text(
-                      "Email",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: CustomSizes.spaceBtwItems / 2),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "You Email",
+                        hintText: "Your Email",
                         hintStyle: TextStyle(color: CustomColors.textSecondary),
                       ),
                     ),
@@ -79,20 +64,29 @@ class SignupScreen extends StatelessWidget {
                     TextField(
                       obscureText: true,
                       decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.visibility_off_outlined),
                         hintText: "Your Password",
+                        suffixIcon: Icon(Icons.visibility_off_outlined),
                         hintStyle: TextStyle(color: CustomColors.textSecondary),
                       ),
                     ),
-                    SizedBox(height: CustomSizes.spaceBtwSections),
-
-                    Row(
-                      children: [
-                        Checkbox(value: false, onChanged: (value) {}),
-                        Text("I accept the terms and privacy policy."),
-                      ],
+                    // Inside your LoginScreen form, below password field
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          // Navigate to ForgotPasswordScreen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const ForgotPasswordScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text("Forgot Password?"),
+                      ),
                     ),
-                    SizedBox(height: CustomSizes.spaceBtwSections),
+
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
@@ -102,7 +96,7 @@ class SignupScreen extends StatelessWidget {
                             CustomColors.black,
                           ),
                         ),
-                        child: Text("Signup"),
+                        child: Text("Login"),
                       ),
                     ),
                     SizedBox(height: CustomSizes.spaceBtwSections),
@@ -133,13 +127,13 @@ class SignupScreen extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "Already have an account?",
+                          r"Don’t have an account?",
                           style: TextStyle(color: Colors.grey),
                         ),
                         TextButton(
-                          onPressed: () => Get.off(() => SigninScreen()),
+                          onPressed: () => Get.off(() => SignupScreen()),
                           child: Text(
-                            "Signin",
+                            "Signup",
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ),

@@ -1,3 +1,4 @@
+import 'package:authentication_kit/features/authentication/screens/signin_screen/signin_screen.dart';
 import 'package:authentication_kit/features/authentication/screens/signup_screen/signup_intro_screen.dart';
 import 'package:authentication_kit/utils/constants/colors.dart';
 import 'package:authentication_kit/utils/constants/image_strings.dart';
@@ -52,7 +53,9 @@ class OpeningScreen extends StatelessWidget {
                   style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(CustomColors.black),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.off(() => const SigninScreen());
+                  },
                   child: Text(CustomTexts.login),
                 ),
               ),

@@ -1,3 +1,5 @@
+import 'package:authentication_kit/features/authentication/screens/phone_signin/phone_signin.dart';
+import 'package:authentication_kit/features/authentication/screens/signin_screen/signin_screen.dart';
 import 'package:authentication_kit/features/authentication/screens/signup_screen/signup_screen.dart';
 import 'package:authentication_kit/features/authentication/screens/signup_screen/widgets/custom_auth_button_with_icons_and_text.dart';
 import 'package:authentication_kit/utils/constants/colors.dart';
@@ -18,6 +20,7 @@ class SignupIntroScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(CustomSizes.defaultSpace),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 padding: EdgeInsets.all(CustomSizes.defaultSpace),
@@ -65,8 +68,9 @@ class SignupIntroScreen extends StatelessWidget {
                     ),
                     SizedBox(height: CustomSizes.spaceBtwItems),
                     CustomAuthButtonWithIconsAndText(
-                      icon: FontAwesomeIcons.apple,
-                      text: "Continue with Apple",
+                      onTap: () => Get.to(() => LoginWithPhoneScreen()),
+                      icon: FontAwesomeIcons.phone,
+                      text: "Continue with Phone",
                     ),
                     SizedBox(height: CustomSizes.spaceBtwItems),
                     CustomAuthButtonWithIconsAndText(
@@ -79,21 +83,19 @@ class SignupIntroScreen extends StatelessWidget {
               ),
               SizedBox(height: CustomSizes.spaceBtwSections),
 
-              RichText(
-                text: TextSpan(
+              Align(
+                alignment: Alignment.center,
+                child: Row(
                   children: [
-                    TextSpan(
-                      text: CustomTexts.alreadyHaveAnAccount,
-                      style: Theme.of(context).textTheme.bodyMedium!.apply(
-                        color: CustomColors.textSecondary,
-                      ),
+                    Text(
+                      "Already have an account?",
+                      style: TextStyle(color: Colors.grey),
                     ),
-
-                    TextSpan(
-                      text: " ${CustomTexts.login}",
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                    TextButton(
+                      onPressed: () => Get.off(() => SigninScreen()),
+                      child: Text(
+                        "Signin",
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),
                   ],
