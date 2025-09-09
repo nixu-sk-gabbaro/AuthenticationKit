@@ -1,16 +1,15 @@
+import 'package:authentication_kit/features/authentication/screens/forgot_password/password_changed_screen.dart';
+import 'package:authentication_kit/features/authentication/screens/signin_screen/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:authentication_kit/utils/constants/colors.dart';
 import 'package:authentication_kit/utils/constants/sizes.dart';
+import 'package:get/get.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController newPasswordController = TextEditingController();
-    final TextEditingController confirmPasswordController =
-        TextEditingController();
-
     return Scaffold(
       appBar: AppBar(title: const Text("Reset Password"), centerTitle: true),
       body: Padding(
@@ -33,7 +32,6 @@ class ResetPasswordScreen extends StatelessWidget {
 
             // New Password Field
             TextField(
-              controller: newPasswordController,
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: "New Password",
@@ -45,7 +43,6 @@ class ResetPasswordScreen extends StatelessWidget {
 
             // Confirm Password Field
             TextField(
-              controller: confirmPasswordController,
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: "Confirm Password",
@@ -60,27 +57,7 @@ class ResetPasswordScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  String newPass = newPasswordController.text.trim();
-                  String confirmPass = confirmPasswordController.text.trim();
-
-                  if (newPass.isEmpty || confirmPass.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("All fields are required")),
-                    );
-                  } else if (newPass != confirmPass) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Passwords do not match")),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Password reset successful!"),
-                      ),
-                    );
-
-                    // Navigate back to Login Screen
-                    Navigator.popUntil(context, (route) => route.isFirst);
-                  }
+                  Get.to(() => PasswordChangedScreen());
                 },
                 style: const ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(CustomColors.black),

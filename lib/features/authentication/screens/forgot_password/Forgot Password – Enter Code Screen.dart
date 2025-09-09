@@ -1,15 +1,14 @@
+import 'package:authentication_kit/features/authentication/screens/forgot_password/reset_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:authentication_kit/utils/constants/colors.dart';
 import 'package:authentication_kit/utils/constants/sizes.dart';
-import 'reset_password_screen.dart';
+import 'package:get/get.dart';
 
 class ForgotPasswordCodeScreen extends StatelessWidget {
   const ForgotPasswordCodeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController otpController = TextEditingController();
-
     return Scaffold(
       appBar: AppBar(title: const Text("Enter Code")),
       body: Padding(
@@ -33,7 +32,6 @@ class ForgotPasswordCodeScreen extends StatelessWidget {
 
             // OTP Input Field
             TextField(
-              controller: otpController,
               keyboardType: TextInputType.number,
               maxLength: 6,
               decoration: const InputDecoration(
@@ -50,21 +48,7 @@ class ForgotPasswordCodeScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  if (otpController.text.length == 6) {
-                    // ✅ Navigate to Reset Password Screen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ResetPasswordScreen(),
-                      ),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Please enter a valid 6-digit code"),
-                      ),
-                    );
-                  }
+                  Get.to(() => const ResetPasswordScreen());
                 },
                 style: const ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(CustomColors.black),
@@ -78,12 +62,13 @@ class ForgotPasswordCodeScreen extends StatelessWidget {
             // Resend Option
             Center(
               child: TextButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("New code sent!")),
-                  );
-                },
-                child: const Text("Resend Code"),
+                onPressed: () {},
+                child: Text(
+                  "Resend Code",
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ],

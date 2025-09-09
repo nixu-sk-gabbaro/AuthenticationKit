@@ -27,6 +27,10 @@ class CustomTexts {
   static const String openingScreenSubtitle =
       "Now your finances are in one place. Manage your money more effectively";
 
+  // -- Reset password
+  static const String passwordChanged = "Password Changed!";
+  static const String passwordChangedSubtitle =
+      "Your password has been changed successfully. Please use your new password to log in.";
   // -- Authentication Forms
 
   // -- Authentication Headings

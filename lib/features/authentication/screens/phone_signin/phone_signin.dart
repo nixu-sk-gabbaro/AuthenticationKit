@@ -1,4 +1,4 @@
-import 'package:authentication_kit/features/authentication/screens/phone_signin/enter_code.dart';
+import 'package:authentication_kit/features/authentication/screens/otp_verification_screen/otp_verification_screen.dart';
 import 'package:authentication_kit/utils/constants/colors.dart';
 import 'package:authentication_kit/utils/constants/image_strings.dart';
 import 'package:authentication_kit/utils/constants/sizes.dart';

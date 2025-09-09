@@ -2,14 +2,14 @@ import 'package:authentication_kit/features/authentication/screens/forgot_passwo
 import 'package:flutter/material.dart';
 import 'package:authentication_kit/utils/constants/colors.dart';
 import 'package:authentication_kit/utils/constants/sizes.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-
     return Scaffold(
       appBar: AppBar(title: const Text("Forgot Password")),
       body: Padding(
@@ -21,7 +21,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               "Forgot your password?",
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: CustomSizes.spaceBtwItems),
             const Text(
               "Enter your registered email or phone number to receive a verification code.",
               style: TextStyle(fontSize: 16, color: Colors.grey),
@@ -29,35 +29,14 @@ class ForgotPasswordScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // Email/Phone Input
-            TextField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Email or Phone",
-              ),
-            ),
+            TextField(decoration: const InputDecoration(labelText: "Email")),
             const SizedBox(height: 30),
 
-            // ✅ Continue Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  if (emailController.text.isNotEmpty) {
-                    // ✅ Navigate to Code Screen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ForgotPasswordCodeScreen(),
-                      ),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Please enter email or phone number"),
-                      ),
-                    );
-                  }
+                  Get.to(() => const ForgotPasswordCodeScreen());
                 },
                 style: const ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(CustomColors.black),

@@ -2,6 +2,7 @@ import 'package:authentication_kit/features/authentication/screens/forgot_passwo
 import 'package:authentication_kit/features/authentication/screens/phone_signin/phone_signin.dart';
 import 'package:authentication_kit/features/authentication/screens/signup_screen/signup_screen.dart';
 import 'package:authentication_kit/features/authentication/screens/signup_screen/widgets/custom_iconbutton_with_border.dart';
+import 'package:authentication_kit/features/home/screens/home_screen/home_screen.dart';
 import 'package:authentication_kit/utils/constants/colors.dart';
 import 'package:authentication_kit/utils/constants/image_strings.dart';
 import 'package:authentication_kit/utils/constants/sizes.dart';
@@ -70,27 +71,28 @@ class SigninScreen extends StatelessWidget {
                       ),
                     ),
                     // Inside your LoginScreen form, below password field
+                    SizedBox(height: CustomSizes.spaceBtwItems / 2),
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
                         onPressed: () {
-                          // Navigate to ForgotPasswordScreen
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const ForgotPasswordScreen(),
-                            ),
-                          );
+                          Get.to(() => ForgotPasswordScreen());
                         },
-                        child: const Text("Forgot Password?"),
+                        child: Text(
+                          "Forgot Password?",
+                          style: Theme.of(context).textTheme.bodyMedium!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
+                    SizedBox(height: CustomSizes.spaceBtwItems / 2),
 
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => HomeScreen());
+                        },
                         style: ButtonStyle(
                           backgroundColor: WidgetStatePropertyAll(
                             CustomColors.black,

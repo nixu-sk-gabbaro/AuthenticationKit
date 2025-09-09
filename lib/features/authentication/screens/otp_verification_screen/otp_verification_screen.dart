@@ -1,7 +1,10 @@
+import 'package:authentication_kit/features/home/screens/home_screen/home_screen.dart';
 import 'package:authentication_kit/utils/constants/colors.dart';
 import 'package:authentication_kit/utils/constants/image_strings.dart';
 import 'package:authentication_kit/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key});
@@ -80,7 +83,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const HomeScreen());
+                },
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(CustomColors.black),
                 ),
@@ -98,7 +103,15 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   "Didn’t receive the code?",
                   style: TextStyle(color: Colors.grey),
                 ),
-                TextButton(onPressed: () {}, child: const Text("Resend")),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Resend",
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
